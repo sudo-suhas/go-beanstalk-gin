@@ -1,0 +1,21 @@
+{
+    "files.eol": "\n",
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 30000,
+    "go.liveErrors": {
+        "enabled": true,
+        "delay": 500
+    },
+    "go.lintTool": "gometalinter",
+    "go.lintFlags": [
+        "--disable-all",
+        "--enable=megacheck",
+        "--enable=golint",
+        "--enable=errcheck",
+        "--enable=lll",
+        "--vendor",
+        "--line-length=120",
+        "--concurrency=2"
+    ],
+	"editor.insertSpaces": false
+}
