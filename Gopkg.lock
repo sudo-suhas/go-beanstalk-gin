@@ -8,16 +8,22 @@
   revision = "22d885f9ecc78bf4ee5d72b937e4bbcdc58e8cae"
 
 [[projects]]
+  branch = "master"
   name = "github.com/gin-gonic/gin"
-  packages = [".","binding","render"]
-  revision = "d459835d2b077e44f7c9b453505ee29881d5d12d"
-  version = "v1.2"
+  packages = [".","binding","json","render"]
+  revision = "6653d5d588740eb73d2245ef04d5a407d3c3f034"
 
 [[projects]]
   branch = "master"
   name = "github.com/golang/protobuf"
   packages = ["proto"]
   revision = "1643683e1b54a9e88ad26d98f81400c8c9d9f4f9"
+
+[[projects]]
+  name = "github.com/json-iterator/go"
+  packages = ["."]
+  revision = "6240e1e7983a85228f7fd9c3e1b6932d46ec58e2"
+  version = "1.0.3"
 
 [[projects]]
   name = "github.com/mattn/go-isatty"
@@ -52,6 +58,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "1a2b10f3ec80fa4b6ad88156b737403ca45820640ec668e0b797538b6274d305"
+  inputs-digest = "e1f0c2ba8c8dd565516f5cc77646eeadafed2477e851e38ca9d8027f5369bd4e"
   solver-name = "gps-cdcl"
   solver-version = 1
