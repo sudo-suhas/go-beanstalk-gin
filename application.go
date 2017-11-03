@@ -1,6 +1,9 @@
 package main
 
 import (
+	"log"
+	"os"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -53,6 +56,11 @@ func main() {
 		}
 	})
 
-	// Listen and Server in 0.0.0.0:8080
-	r.Run(":8080")
+	// Listen and Server in 0.0.0.0:$PORT
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "5000"
+	}
+	err := r.Run(":" + port)
+	log.Panic(err)
 }
