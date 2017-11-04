@@ -1,12 +1,12 @@
 ## Deploy to Elastic Beanstalk
 
-1. [Environment setup](environment-setup)
-1. [`eb init`](eb-init)
-1. [`eb create`](eb-create)
-1. [Load port from environment](load-port-from-environment)
-1. [Buildfile](buildfile)
-1. [gin `release` mode](gin_release_mode)
-1. [`eb deploy`](eb-deploy)
+1. [Environment setup](#environment-setup)
+1. [`eb init`](#eb-init)
+1. [`eb create`](#eb-create)
+1. [Load port from environment](#load-port-from-environment)
+1. [Buildfile](#buildfile)
+1. [gin `release` mode](#gin_release_mode)
+1. [`eb deploy`](#eb-deploy)
 
 After you have completed all the steps, your repo should look something like
 this - [`deploy-to-elastic-beanstalk`]

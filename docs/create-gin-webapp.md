@@ -1,11 +1,11 @@
 ## Create gin webapp
 
-1. [Environment setup](environment-setup)
-1. [Initialise git repo](initialise-git-repo)
-1. [Setup git meta files](setup-git-meta-files)
-1. [Implement the webapp](implement-the-webapp)
-1. [`dep` init](dep-init)
-1. [Update `gin` version contraint](update-gin-version-contraint)
+1. [Environment setup](#environment-setup)
+1. [Initialise git repo](#initialise-git-repo)
+1. [Setup git meta files](#setup-git-meta-files)
+1. [Implement the webapp](#implement-the-webapp)
+1. [`dep` init](#dep-init)
+1. [Update `gin` version contraint](#update-gin-version-contraint)
 
 After you have completed all the steps, your repo should look something like
 this - [`create-gin-webapp`]
