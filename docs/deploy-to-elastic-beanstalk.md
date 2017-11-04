@@ -174,10 +174,10 @@ However, if we make any changes to `.gitignore`, the file gets ignored. Maybe a
 The next step is to create an environment for our application.
 
 Command line flags:
-* **`--single`** - Use a single instance with no load balancer. This is only a
-  demo and we do not need high availablity.
-* **`--sample`** - Deploy a sample application. Our webapp isn't ready to be
-  deployed to Elastic Beanstalk yet.
+* **`--single`** - Use a single instance with no load balancer. _This is only a
+  demo and we do not need high availability_.
+* **`--sample`** - Deploy a sample application. _Our webapp isn't ready to be
+  deployed to Elastic Beanstalk yet_.
 
 ```shell
 $ eb create --single --sample
@@ -207,7 +207,7 @@ INFO: Successfully launched environment: go-beanstalk-gin-dev
 
 You should be able to see something like this after the application is deployed:
 
-[![eb sample app](images/eb-sample-app.jpg)]
+![eb sample app](images/eb-sample-app.jpg)
 
 ### Load port from environment
 
@@ -333,7 +333,7 @@ $ eb printenv
      PATH = /bin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/usr/local/go/bin:/var/app/current
 ```
 
-We can also achieve this through using [`.ebextensions`]. Add a file
+We can also achieve this through [`.ebextensions`]. Add a file
 `.ebextensions/options.config` in the root of the project with the following
 content:
 

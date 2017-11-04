@@ -10,7 +10,7 @@ This project demonstrates the deployment of a simple webapp built using [`gin`] 
 The steps have been divided and documented in the following stages:
 
 1. [Create gin webapp](docs/create-gin-webapp.md)
-1. [Deploy to Elastic Beanstalk](docs/deploy-to-elastic-beanstalk)
+1. [Deploy to Elastic Beanstalk](docs/deploy-to-elastic-beanstalk.md)
 
 ## License
 

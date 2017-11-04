@@ -4,7 +4,7 @@
 1. [Initialise git repo](#initialise-git-repo)
 1. [Setup git meta files](#setup-git-meta-files)
 1. [Implement the webapp](#implement-the-webapp)
-1. [`dep` init](#dep-init)
+1. [`dep init`](#dep-init)
 1. [Update `gin` version contraint](#update-gin-version-contraint)
 
 After you have completed all the steps, your repo should look something like
@@ -14,7 +14,7 @@ this - [`create-gin-webapp`]
 
 - Install Go from here - https://golang.org/dl/
 - Install `dep`, a Go dependency management tool using instructions described
-  here - https://github.com/golang/dep#setup.
+  here - [golang/dep#setup].
 
 ### Initialise git repo
 
@@ -39,7 +39,7 @@ https://kevin.deldycke.com/2010/05/initialize-git-repositories/.
 Add git meta files `.gitignore` and `.gitattributes`. I use a modified version
 of [github/gitignore:Go.gitignore@`master`] to also ignore the `vendor`
 directory. If you are on windows, it's pretty important to add the
-`.gitattributes` file:
+`.gitattributes` file with the following content:
 
 ```
 * text eol=lf
@@ -55,7 +55,7 @@ $ git config core.autocrlf false
 This ensures that all your files in the repo use `LF` and not `CRLF`.
 You can read more about this here -
 https://help.github.com/articles/dealing-with-line-endings/. Unfortunately,
-when the command line took for Elastic Beanstalk packages and deploys your
+when the command line tool for Elastic Beanstalk packages and deploys your
 application, it does not handle the line endings and this can cause issues on
 linux.
 
@@ -70,7 +70,7 @@ For this demo, I'll use a basic starting template from `gin` examples:
 100  1213  100  1213    0     0   2027      0 --:--:-- --:--:-- --:--:--  2411
 ```
 
-### `dep` init
+### `dep init`
 
 Initialise `dep` to be able to vendor the dependencies:
 
@@ -118,11 +118,11 @@ $ go run application.go
 [GIN-debug] Listening and serving HTTP on :8080
 ```
 
-### Update `gin` version contraint
+### Update `gin` version constraint
 
 On intialising `dep`, it automatically locks `gin` to `v1.2.0` which is the
-latest release. However, I want to use some of the changes currently in master.
-Specifically, it is possible to use `jsoniter` for JSON
+latest release. However, I want to use some of the changes currently in the
+`master` branch. Specifically, it is possible to use `jsoniter` for JSON
 marshalling/unmarshalling via build tags. To do this, we need to edit the
 `Gopkg.toml` file:
 
@@ -241,4 +241,5 @@ Solver wall times by segment:
 ```
 
 [`create-gin-webapp`]: https://github.com/sudo-suhas/go-beanstalk-gin/tree/create-gin-webapp
+[golang/dep#setup]: https://github.com/golang/dep#setup
 [github/gitignore:Go.gitignore@`master`]: https://github.com/github/gitignore/blob/master/Go.gitignore
