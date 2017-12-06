@@ -8,13 +8,13 @@
 1. [Update `gin` version contraint](#update-gin-version-contraint)
 
 After you have completed all the steps, your repo should look something like
-this - [`create-gin-webapp`]
+this - [`create-gin-webapp`][tag-create-gin-webapp].
 
 ### Environment setup
 
-- Install Go from here - https://golang.org/dl/
-- Install `dep`, a Go dependency management tool using instructions described
-  here - [golang/dep#setup].
+* Install Go from here - https://golang.org/dl/
+* Install `dep`, a Go dependency management tool using instructions described
+  here - [golang/dep#setup][dep-setup].
 
 ### Initialise git repo
 
@@ -28,7 +28,6 @@ Initialized empty Git repository in E:/go/src/github.com/sudo-suhas/go-beanstalk
 
 $ git commit --allow-empty -m "chore(git): init"
 [master (root-commit) ff509aa] chore(git): init
-
 ```
 
 You can read more about initialising a git repo here -
@@ -37,13 +36,12 @@ https://kevin.deldycke.com/2010/05/initialize-git-repositories/.
 ### Setup git meta files
 
 Add git meta files `.gitignore` and `.gitattributes`. I use a modified version
-of [github/gitignore:Go.gitignore@`master`] to also ignore the `vendor`
-directory. If you are on windows, it's pretty important to add the
+of [github/gitignore:Go.gitignore@`master`][github-gitignore-go] to also ignore
+the `vendor` directory. If you are on windows, it's pretty important to add the
 `.gitattributes` file with the following content:
 
 ```
 * text eol=lf
-
 ```
 
 And run this for good measure:
@@ -52,10 +50,10 @@ And run this for good measure:
 $ git config core.autocrlf false
 ```
 
-This ensures that all your files in the repo use `LF` and not `CRLF`.
-You can read more about this here -
-https://help.github.com/articles/dealing-with-line-endings/. Unfortunately,
-when the command line tool for Elastic Beanstalk packages and deploys your
+This ensures that all your files in the repo use `LF` and not `CRLF`. You can
+read more about this here -
+https://help.github.com/articles/dealing-with-line-endings/. Unfortunately, when
+the command line tool for Elastic Beanstalk packages and deploys your
 application, it does not handle the line endings and this can cause issues on
 linux.
 
@@ -240,6 +238,6 @@ Solver wall times by segment:
 (9/9) Wrote github.com/json-iterator/go@1.0.3
 ```
 
-[`create-gin-webapp`]: https://github.com/sudo-suhas/go-beanstalk-gin/tree/create-gin-webapp
-[golang/dep#setup]: https://github.com/golang/dep#setup
-[github/gitignore:Go.gitignore@`master`]: https://github.com/github/gitignore/blob/master/Go.gitignore
+[tag-create-gin-webapp]: https://github.com/sudo-suhas/go-beanstalk-gin/tree/create-gin-webapp
+[dep-setup]: https://github.com/golang/dep#setup
+[github-gitignore-go]: https://github.com/github/gitignore/blob/master/Go.gitignore

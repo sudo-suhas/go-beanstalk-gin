@@ -9,15 +9,15 @@
 1. [`eb deploy`](#eb-deploy)
 
 After you have completed all the steps, your repo should look something like
-this - [`deploy-to-elastic-beanstalk`]
+this - [`deploy-to-elastic-beanstalk`][tag-deploy-to-elastic-beanstalk].
 
 ### Environment setup
 
-Install the Elastic Beanstalk command line tool using the instructions
-described here -
+Install the Elastic Beanstalk command line tool using the instructions described
+here -
 http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install.html.
-After installing the `eb` CLI, when we initialise our first application, it
-will request the access and secret key so that it can manage resources for us.
+After installing the `eb` CLI, when we initialise our first application, it will
+request the access and secret key so that it can manage resources for us.
 
 ### `eb init`
 
@@ -122,7 +122,6 @@ global:
   repository: null
   sc: git
   workspace_type: Application
-
 ```
 
 It also adds the following to our `.gitignore`:
@@ -174,6 +173,7 @@ However, if we make any changes to `.gitignore`, the file gets ignored. Maybe a
 The next step is to create an environment for our application.
 
 Command line flags:
+
 * **`--single`** - Use a single instance with no load balancer. _This is only a
   demo and we do not need high availability_.
 * **`--sample`** - Deploy a sample application. _Our webapp isn't ready to be
@@ -246,9 +246,9 @@ default to `5000` otherwise:
 
 ### Buildfile
 
-Our application is pretty close to complete. However, deployment will still
-fail on Elastic Beanstalk because the default build process does not know how
-to resolve `github.com/gin-gonic/gin`:
+Our application is pretty close to complete. However, deployment will still fail
+on Elastic Beanstalk because the default build process does not know how to
+resolve `github.com/gin-gonic/gin`:
 
 ```
 -------------------------------------
@@ -278,13 +278,15 @@ The build process need to do the following:
 * Download a versioned release of `dep` if required.
 * Setup a temporary Go workspace and move our files to a project under it.
 * Install dependencies using `dep ensure`.
-* Build the application and also specify [build tags for `jsoniter`].
+* Build the application and also specify [build tags for
+  `jsoniter`][gin-build-tag-jsoniter].
 * Move the binary we built back to `APP_STAGING_DIR`.
 
-You can see the relevant commit, [`d0eafa7`], which sets up the build process.
+You can see the relevant commit, [`d0eafa7`][commit-d0eafa7], which sets up the
+build process.
 
-**Important:** The file `build.sh` should be executable. On *nix, it can be made
-executable by modifying the relevant permissons before committing it:
+**Important:** The file `build.sh` should be executable. On \*nix, it can be
+made executable by modifying the relevant permissons before committing it:
 
 ```shell
 $ chmod +x build.sh
@@ -333,7 +335,7 @@ $ eb printenv
      PATH = /bin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/usr/local/go/bin:/var/app/current
 ```
 
-We can also achieve this through [`.ebextensions`]. Add a file
+We can also achieve this through [`.ebextensions`][eb-extensions]. Add a file
 `.ebextensions/options.config` in the root of the project with the following
 content:
 
@@ -341,7 +343,6 @@ content:
 option_settings:
   aws:elasticbeanstalk:application:environment:
     GIN_MODE: release
-
 ```
 
 ### `eb deploy`
@@ -395,7 +396,7 @@ $ curl -v http://go-beanstalk-gin-dev.ap-south-1.elasticbeanstalk.com/ping
 pong
 ```
 
-[`deploy-to-elastic-beanstalk`]: https://github.com/sudo-suhas/go-beanstalk-gin/tree/deploy-to-elastic-beanstalk
-[build tags for `jsoniter`]: https://github.com/gin-gonic/gin#build-with-jsoniter
-[`d0eafa7`]: https://github.com/sudo-suhas/go-beanstalk-gin/commit/d0eafa7
-[`.ebextensions`]: http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/ebextensions.html
+[tag-deploy-to-elastic-beanstalk]: https://github.com/sudo-suhas/go-beanstalk-gin/tree/deploy-to-elastic-beanstalk
+[gin-build-tag-jsoniter]: https://github.com/gin-gonic/gin#build-with-jsoniter
+[commit-d0eafa7]: https://github.com/sudo-suhas/go-beanstalk-gin/commit/d0eafa7
+[eb-extensions]: http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/ebextensions.html
