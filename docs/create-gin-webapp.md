@@ -15,14 +15,82 @@ this - [`create-gin-webapp`][tag-create-gin-webapp].
 * Install Go from here - https://golang.org/dl/
 * Install `dep`, a Go dependency management tool using instructions described
   here - [golang/dep#setup][dep-setup].
+* If you are on Windows, you might not have `cURL` installed. Refer to this
+  Stack Overflow post to install it - https://stackoverflow.com/a/16216825. Note
+  that you would also need to setup TLS certificate verification as explained
+  here - https://superuser.com/a/442797. Since `cURL` is only used for a couple
+  of simple steps which could just as well be done manually, you can choose to
+  skip setting up `cURL`. One such example is
+  [copying a file from GitHub to our project](#implement-the-webapp).
 
 ### Initialise git repo
 
-Create the project folder inside your Go workspace and initialise the git repo:
+In Go, where we create the project folder is important. Because a package's
+import path corresponds to its location inside the workspace. For this reason,
+it is recommended to incude the hosting domain and user name in the project path
+to ensure that the import path is unique.
+
+<details>
+
+<summary>Read more about import paths</summary>
+
+https://golang.org/doc/code.html#ImportPaths
+
+> If you keep your code in a source repository somewhere, then you should use
+> the root of that source repository as your base path. For instance, if you
+> have a GitHub account at github.com/user, that should be your base path.
+>
+> Note that you don't need to publish your code to a remote repository before
+> you can build it. It's just a good habit to organize your code as if you will
+> publish it someday. In practice you can choose any arbitrary path name, as
+> long as it is unique to the standard library and greater Go ecosystem.
+
+https://dave.cheney.net/2014/12/01/five-suggestions-for-setting-up-a-go-project
+
+> In other languages it is quite common to ensure your package has a unique
+> namespace by prefixing it with your company name, say `com.sun.misc.Unsafe`.
+> If everyone only writes packages corresponding to domains that they control,
+> then there is little possibility of a collision.
+>
+> In Go, the convention is to include the location of the source code in the
+> package’s import path, ie
+>
+> ```
+> $GOPATH/src/github.com/golang/glog
+> ```
+
+https://blog.golang.org/organizing-go-code
+
+> #### Choose a good import path (make your package "go get"-able)
+>
+> Sometimes people set `GOPATH` to the root of their source repository and
+> put their packages in directories relative to the repository root, such as
+> `"src/my/package"`. On one hand, this keeps the import paths short
+> (`"my/package"` instead of `"github.com/me/project/my/package"`), but on the
+> other it breaks `go get` and forces users to re-set their `GOPATH` to use the
+> package. Don't do this.
+
+</details>
+
+**Create the project folder inside your Go workspace:**
 
 ```shell
 $ mkdir -p $GOPATH/src/github.com/<USERNAME>/go-beanstalk-gin && cd $_
+```
 
+_If you are on Windows, do this instead:_
+
+```batch
+λ md %gopath%\src\github.com\<USERNAME>\go-beanstalk-gin
+
+λ cd %gopath%\src\github.com\<USERNAME>\go-beanstalk-gin
+```
+
+Note: These commands will create parent directories as needed.
+
+**Initialise the git repo:**
+
+```shell
 $ git init
 Initialized empty Git repository in E:/go/src/github.com/sudo-suhas/go-beanstalk-gin/.git/
 
@@ -70,7 +138,8 @@ For this demo, I'll use a basic starting template from `gin` examples:
 
 ### `dep init`
 
-Initialise `dep` to be able to vendor the dependencies:
+Initialise the project using `dep` which will parse dependencies, write manifest
+and lock files, and vendor the dependencies:
 
 ```shell
 $ dep init

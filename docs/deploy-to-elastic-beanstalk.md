@@ -143,31 +143,6 @@ It also adds the following to our `.gitignore`:
 +
 ```
 
-Oddly enough, although these rules should ignore the newly created file
-`.elasticbeanstalk/config.yml`, it does not:
-
-```shell
-git status
-On branch master
-Your branch is up-to-date with 'origin/master'.
-
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
-
-        modified:   .gitignore
-
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-
-        .elasticbeanstalk/
-
-no changes added to commit (use "git add" and/or "git commit -a")
-```
-
-However, if we make any changes to `.gitignore`, the file gets ignored. Maybe a
-`git` bug?
-
 ### `eb create`
 
 The next step is to create an environment for our application.
@@ -205,17 +180,23 @@ INFO: Added instance [i-XXXXXXXXXXXXXXXXX] to your environment.
 INFO: Successfully launched environment: go-beanstalk-gin-dev
 ```
 
-You should be able to see something like this after the application is deployed:
+After the application has been successfully deployed, open the public URL of
+your website in the browser:
+
+```shell
+$ eb open
+```
+
+You should be able to see something like this:
 
 ![eb sample app](images/eb-sample-app.jpg)
 
 ### Load port from environment
 
-By default, Elastic Beanstalk configures the nginx proxy to forward requests to
-our application on port `5000`. We can override the default port by setting the
-`PORT` environment property to the port on which our main application listens.
-So let us modify `application.go` to load the `port` from the environment and
-default to `5000` otherwise:
+By default, Elastic Beanstalk configures the `nginx` proxy to forward requests
+to our application on port `5000`. It is possible to override the default port
+by setting the environment property `$PORT`. So let us modify `application.go`
+to load the `port` from the environment and default to `5000` otherwise:
 
 ```diff
 @@ -1,6 +1,9 @@
@@ -273,7 +254,7 @@ didn't help either. Maybe because the folder structure did not exist.
 The solution is to add a `Buildfile` to take control of the build process.
 Docs - http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/go-buildfile.html.
 
-The build process need to do the following:
+The build process needs to do the following:
 
 * Download a versioned release of `dep` if required.
 * Setup a temporary Go workspace and move our files to a project under it.
