@@ -8,7 +8,7 @@
 GOPATH="/tmp/go"
 APP_BUILD_DIR="$GOPATH/src/go-beanstalk-gin"  # We will build the app here
 APP_STAGING_DIR=$(pwd)                        # Current directory
-DEP_VERSION="v0.3.2"                          # Use specific version for stability
+DEP_VERSION="v0.4.1"                          # Use specific version for stability
 
 # Install dep, a Go dependency management tool, if not already installed or if
 # the version does not match.
